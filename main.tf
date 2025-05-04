@@ -17,4 +17,5 @@ module "lambda_function" {
   authors_table     = module.authors_table.id
   courses_table_arn = module.courses_table.arn
   authors_table_arn = module.authors_table.arn
+  aws_api_gateway_rest_api_execution_arn = aws_api_gateway_rest_api.this.execution_arn
 }

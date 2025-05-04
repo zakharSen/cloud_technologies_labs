@@ -22,7 +22,7 @@ module "lambda_get_all_authors" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/get_all_authors"
+  source_path = "${path.module}/src/get_all_authors"
 
   environment_variables = {
     TABLE_NAME = var.authors_table
@@ -37,6 +37,16 @@ module "lambda_get_all_authors" {
       resources = ["${var.authors_table_arn}"]
     }
   }
+
+  allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
 
   tags = module.label.tags
 }
@@ -57,7 +67,7 @@ module "lambda_get_all_courses" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/get_all_courses"
+  source_path = "${path.module}/src/get_all_courses"
 
   environment_variables = {
     TABLE_COURSES = var.courses_table
@@ -73,6 +83,15 @@ module "lambda_get_all_courses" {
     }
   }
 
+  allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
   tags = module.label.tags
 }
 
@@ -92,7 +111,7 @@ module "lambda_update_course" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/update_course"
+  source_path = "${path.module}/src/update_course"
 
   environment_variables = {
     TABLE_COURSES = var.courses_table
@@ -107,6 +126,16 @@ module "lambda_update_course" {
       resources = ["${var.courses_table_arn}"]
     }
   }
+
+  allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
 
   tags = module.label.tags
 }
@@ -127,7 +156,7 @@ module "lambda_save_course" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/save_course"
+  source_path = "${path.module}/src/save_course"
 
   environment_variables = {
     TABLE_COURSES = var.courses_table
@@ -142,6 +171,16 @@ module "lambda_save_course" {
       resources = ["${var.courses_table_arn}"]
     }
   }
+
+    allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
 
   tags = module.label.tags
 }
@@ -162,7 +201,7 @@ module "lambda_delete_course" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/delete_course"
+  source_path = "${path.module}/src/delete_course"
 
   environment_variables = {
     TABLE_COURSES = var.courses_table
@@ -177,6 +216,16 @@ module "lambda_delete_course" {
       resources = ["${var.courses_table_arn}"]
     }
   }
+
+    allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
 
   tags = module.label.tags
 }
@@ -197,7 +246,7 @@ module "lambda_get_course" {
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
-  source_path = "${path.module}/source/get_course"
+  source_path = "${path.module}/src/get_course"
 
   environment_variables = {
     TABLE_COURSES = var.courses_table
@@ -212,6 +261,16 @@ module "lambda_get_course" {
       resources = ["${var.courses_table_arn}"]
     }
   }
+
+    allowed_triggers = {
+    APIGatewayAny = {
+      service = "apigateway"
+      source_arn = "${var.aws_api_gateway_rest_api_execution_arn}/*/*/*"
+    }
+  }
+
+  publish = true
+  create_current_version_allowed_triggers = false
 
   tags = module.label.tags
 }
